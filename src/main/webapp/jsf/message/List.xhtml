@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMessageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ListMessageTitle}"/>
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{messageController.prepareCreate}" icon="ui-icon-plus"/>
+                    </p:toolbarGroup>  
+                </p:toolbar> 
+                <h:outputText escape="false" value="#{bundle.ListMessageEmpty}" rendered="#{messageController.items.rowCount == 0}"/>
+                <p:dataTable value="#{messageController.items}" var="item"
+                             paginator="true" rows="10"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"  paginatorAlwaysVisible="false" rendered="#{messageController.items.rowCount >0}" >
+                    <p:column headerText="#{bundle.ListMessageTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_content}">
+                        <h:outputText value="#{item.content}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_frequency}">
+                        <h:outputText value="#{item.frequency}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_position}">
+                        <h:outputText value="#{item.position}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_person}">
+                        <h:outputText value="#{item.person}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_metadatas}">
+                        <h:outputText value="#{item.metadatas}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_publishDate}">
+                        <h:outputText value="#{item.publishDate}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListMessageTitle_rdfSubject}">
+                        <h:outputText value="#{item.rdfSubject}"/>
+                    </p:column>
+                    <p:column headerText="&nbsp;">
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <p:commandButton action="#{messageController.prepareView}" icon="ui-icon-search"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{messageController.prepareEdit}"  icon="ui-icon-pencil"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{messageController.destroy}" icon="ui-icon-trash"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

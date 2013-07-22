@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMessageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ViewMessageTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{messageController.prepareCreate}" value="#{bundle.ViewMessageCreateLink}" icon="ui-icon-plus" />
+                        <p:commandButton action="#{messageController.prepareList}" value="#{bundle.CreateMessageShowAllLink}" immediate="true"/>
+                        <p:commandButton action="#{messageController.destroyAndView}" value="#{bundle.ViewMessageDestroyLink}" icon="ui-icon-trash"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+                <p:separator/>
+
+                <div id="show-frequency" class="content scaffold-show" role="main">
+                    <ol class="property-list Message">
+                        <li class="fieldcontain">
+                            <h:outputText id="id-label" class="property-label" value="#{bundle.ViewMessageLabel_id}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.id}" title="#{bundle.ViewMessageTitle_id}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="content-label" class="property-label" value="#{bundle.ViewMessageLabel_content}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.content}" title="#{bundle.ViewMessageTitle_content}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="frequency-label" class="property-label" value="#{bundle.ViewMessageLabel_frequency}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.frequency}" title="#{bundle.ViewMessageTitle_frequency}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="position-label" class="property-label" value="#{bundle.ViewMessageLabel_position}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.position}" title="#{bundle.ViewMessageTitle_position}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="person-label" class="property-label" value="#{bundle.ViewMessageLabel_person}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.person}" title="#{bundle.ViewMessageTitle_person}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="metadatas-label" class="property-label" value="#{bundle.ViewMessageLabel_metadatas}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.metadatas}" title="#{bundle.ViewMessageTitle_metadatas}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="publishDate-label" class="property-label" value="#{bundle.ViewMessageLabel_publishDate}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.publishDate}" title="#{bundle.ViewMessageTitle_publishDate}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="rdfSubject-label" class="property-label" value="#{bundle.ViewMessageLabel_rdfSubject}"/>
+                            <h:outputText class="property-value"  value="#{messageController.selected.rdfSubject}" title="#{bundle.ViewMessageTitle_rdfSubject}"/>
+                        </li>
+                    </ol>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

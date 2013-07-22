@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ListCategoryTitle}"/>
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{categoryController.prepareCreate}" icon="ui-icon-plus"/>
+                    </p:toolbarGroup>  
+                </p:toolbar> 
+                <h:outputText escape="false" value="#{bundle.ListCategoryEmpty}" rendered="#{categoryController.items.rowCount == 0}"/>
+                <p:dataTable value="#{categoryController.items}" var="item"
+                             paginator="true" rows="10"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"  paginatorAlwaysVisible="false" rendered="#{categoryController.items.rowCount >0}" >
+                    <p:column headerText="#{bundle.ListCategoryTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListCategoryTitle_name}">
+                        <h:outputText value="#{item.name}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListCategoryTitle_description}">
+                        <h:outputText value="#{item.description}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListCategoryTitle_parent}">
+                        <h:outputText value="#{item.parent}"/>
+                    </p:column>
+                  
+                    <p:column headerText="&nbsp;">
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <p:commandButton action="#{categoryController.prepareView}" icon="ui-icon-search"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{categoryController.prepareEdit}"  icon="ui-icon-pencil"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{categoryController.destroy}" icon="ui-icon-trash"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

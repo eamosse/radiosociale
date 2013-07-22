@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-retina.png"/>
+
+    </h:head>
+    <h:body>
+        <h:form class="custom">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <p:commandButton id="test" value="Click to add test data" action="#{testControlleer.test}" />  
+
+            <p:growl id="msg" showDetail="true" />  
+
+            <p:tagCloud model="#{testControlleer.model}">  
+                <p:ajax event="select" update="msg" listener="#{testControlleer.onSelect}" />  
+            </p:tagCloud> 
+        </h:form>
+
+        Embouteillage
+        <p:separator /> 
+        <p:feedReader value="http://localhost:8080/RadioServer/Embouteillage.rss" var="feed" size="100">  
+            <h:outputText value="#{feed.title}" style="font-weight: bold"/>  
+            <br />  
+            <h:outputText value="#{feed.description.value}" escape="false"/>  
+            <p:separator />  
+        </p:feedReader> 
+
+        Accident
+        <p:separator /> 
+        <p:feedReader value="http://localhost:8080/RadioServer/Accident.rss" var="feed" size="100">  
+            <h:outputText value="#{feed.title}" style="font-weight: bold"/>  
+            <br />  
+            <h:outputText value="#{feed.description.value}" escape="false"/>  
+            <p:separator />  
+        </p:feedReader> 
+    </h:body>
+</html>
+

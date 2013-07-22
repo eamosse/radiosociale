@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateOnlineAccountTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.CreateOnlineAccountTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{onlineAccountController.create}" value="#{bundle.CreateOnlineAccountSaveLink}" />
+                        <p:commandButton action="#{onlineAccountController.prepareList}" value="#{bundle.CreateOnlineAccountShowAllLink}" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+                <p:separator/>
+                <h:panelGrid columns="2">
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateOnlineAccountLabel_accountServiceHomePage}" for="accountServiceHomePage" />
+                        <p:inputText id="accountServiceHomePage" value="#{onlineAccountController.selected.accountServiceHomePage}"  >
+                            <p:watermark for="accountServiceHomePage" value="#{bundle.CreateOnlineAccountTitle_accountServiceHomePage}" />
+                        </p:inputText>
+                        <p:message for="accountServiceHomePage" id="messageaccountServiceHomePage" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateOnlineAccountLabel_accountName}" for="accountName" />
+                        <p:inputText id="accountName" value="#{onlineAccountController.selected.accountName}"  >
+                            <p:watermark for="accountName" value="#{bundle.CreateOnlineAccountTitle_accountName}" />
+                        </p:inputText>
+                        <p:message for="accountName" id="messageaccountName" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateOnlineAccountLabel_rdfSubject}" for="rdfSubject" />
+                        <p:inputText id="rdfSubject" value="#{onlineAccountController.selected.rdfSubject}"  >
+                            <p:watermark for="rdfSubject" value="#{bundle.CreateOnlineAccountTitle_rdfSubject}" />
+                        </p:inputText>
+                        <p:message for="rdfSubject" id="messagerdfSubject" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateOnlineAccountLabel_accountService}" for="accountService" />
+                        <p:inputText id="accountService" value="#{onlineAccountController.selected.accountService}"  >
+                            <p:watermark for="accountService" value="#{bundle.CreateOnlineAccountTitle_accountService}" />
+                        </p:inputText>
+                        <p:message for="accountService" id="messageaccountService" display="icon"/>  
+                    </h:panelGroup>
+                </h:panelGrid>
+                <p:separator/>
+                <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;">  
+                    <p:commandButton action="#{onlineAccountController.create}" value="#{bundle.CreateOnlineAccountSaveLink}" icon="ui-icon-disk" />
+                    <p:commandButton value="Annuler" onclick="confirmation.show()" type="button" icon="ui-icon-cancel" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="confirmDialog" message="Etes vous sur de vouloir abandonner?"  
+                                 header="Annuler les modifications" severity="alert" widgetVar="confirmation">  
+                    <p:commandButton id="confirm" value="Oui" action="#{onlineAccountController.prepareList}" />  
+                    <p:commandButton id="decline" value="Non" onclick="confirmation.hide()" type="button" />   
+                </p:confirmDialog>  
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

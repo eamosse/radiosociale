@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFrequencyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ListFrequencyTitle}"/>
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{frequencyController.prepareCreate}" icon="ui-icon-plus"/>
+                    </p:toolbarGroup>  
+                </p:toolbar> 
+                <h:outputText escape="false" value="#{bundle.ListFrequencyEmpty}" rendered="#{frequencyController.items.rowCount == 0}"/>
+
+                <p:dataGrid var="item" value="#{frequencyController.items}" columns="3"
+                            rows="12" paginator="false" >
+                    <div class="round">
+                    <p:panel header="#{item.name}" style="text-align:center">
+                        
+                        <h:panelGrid columns="1" style="width:100%">
+                            <p:commandLink action="#{frequencyController.prepareView()}">
+                            <p:graphicImage value="#{item.image}" style="margin: auto" styleClass="circular"/> 
+                            </p:commandLink>
+                            <h:outputText value="#{item.description}" />
+                        </h:panelGrid>
+                    </p:panel>
+                    </div>
+                </p:dataGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

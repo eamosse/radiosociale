@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <p:tabMenu activeIndex="0">  
+                <p:menuitem value="Details" url="View.xhtml" icon="ui-icon-star"/>  
+                <p:menuitem value="Settings" url="Edit.xhtml" icon="ui-icon-pencil" />  
+                <p:menuitem value="Frequencies" url="List_1.xhtml" icon="ui-icon-document" />  
+            </p:tabMenu>  
+
+            <div class="row" style="margin-top: 20px">
+                <div class="large-2 columns">
+                    <img id="img" class="circular"  src="#{request.contextPath}#{categoryController.selected.image}" alt="default image"/>
+                </div>
+                <div class="large-10 columns">
+                    <h5>
+                        <h:outputText  value="#{categoryController.selected.name}" title="#{bundle.ViewCategoryTitle_name}"/>
+                    </h5>
+
+                    <h6>
+                        <h:outputText  value="#{categoryController.selected.description}" title="#{bundle.ViewCategoryTitle_description}"/>
+                    </h6>
+                    <hr/>
+                </div>
+            </div>
+
+            <div class="details">
+                <h4>Frequencies (#{categoryController.frequencies.size()})</h4>
+                <hr/>
+                <p:dataList value="#{categoryController.frequencies}" var="frequency" type="definition">  
+                    <div class="row fieldcontain" style="margin-top: 20px">
+                        <div class="large-2 columns">
+                            <p:commandLink action="#{frequencyController.prepareView}"> 
+                                <img id="img" class="circular"  src="#{request.contextPath}#{frequency.image}" alt="default image"/> 
+                            </p:commandLink>
+                        </div>
+                        <div class="large-10 columns">
+                            <h5>
+                                <h:outputText  value="#{frequency.name}" title="#{bundle.ViewCategoryTitle_name}"/>
+                            </h5>
+
+                            <h6>
+                                <h:outputText  value="#{frequency.description}" title="#{bundle.ViewCategoryTitle_description}"/>
+                            </h6>
+                            <hr/>
+                        </div>
+                    </div>
+                    
+                </p:dataList>  
+            </div>
+
+        </ui:define>      
+    </ui:composition>
+
+</html>

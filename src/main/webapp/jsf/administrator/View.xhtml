@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAdministratorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ViewAdministratorTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{administratorController.prepareCreate}" value="#{bundle.ViewAdministratorCreateLink}" icon="ui-icon-plus" />
+                        <p:commandButton action="#{administratorController.prepareList}" value="#{bundle.CreateAdministratorShowAllLink}" immediate="true"/>
+                        <p:commandButton action="#{administratorController.destroyAndView}" value="#{bundle.ViewAdministratorDestroyLink}" icon="ui-icon-trash"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+                <p:separator/>
+
+                <div id="show-frequency" class="content scaffold-show" role="main">
+                    <ol class="property-list Administrator">
+                        <li class="fieldcontain">
+                            <h:outputText id="id-label" class="property-label" value="#{bundle.ViewAdministratorLabel_id}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.id}" title="#{bundle.ViewAdministratorTitle_id}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="contact-label" class="property-label" value="#{bundle.ViewAdministratorLabel_contact}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.contact}" title="#{bundle.ViewAdministratorTitle_contact}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="rdfSubject-label" class="property-label" value="#{bundle.ViewAdministratorLabel_rdfSubject}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.rdfSubject}" title="#{bundle.ViewAdministratorTitle_rdfSubject}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="id-label" class="property-label" value="#{bundle.ViewAdministratorLabel_id}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.id}" title="#{bundle.ViewAdministratorTitle_id}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="firstName-label" class="property-label" value="#{bundle.ViewAdministratorLabel_firstName}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.firstName}" title="#{bundle.ViewAdministratorTitle_firstName}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="lastName-label" class="property-label" value="#{bundle.ViewAdministratorLabel_lastName}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.lastName}" title="#{bundle.ViewAdministratorTitle_lastName}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="gender-label" class="property-label" value="#{bundle.ViewAdministratorLabel_gender}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.gender}" title="#{bundle.ViewAdministratorTitle_gender}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="email-label" class="property-label" value="#{bundle.ViewAdministratorLabel_email}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.email}" title="#{bundle.ViewAdministratorTitle_email}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="nick-label" class="property-label" value="#{bundle.ViewAdministratorLabel_nick}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.nick}" title="#{bundle.ViewAdministratorTitle_nick}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="img-label" class="property-label" value="#{bundle.ViewAdministratorLabel_img}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.img}" title="#{bundle.ViewAdministratorTitle_img}"/>
+                        </li>
+                        <li class="fieldcontain">
+                            <h:outputText id="rdfSubject-label" class="property-label" value="#{bundle.ViewAdministratorLabel_rdfSubject}"/>
+                            <h:outputText class="property-value"  value="#{administratorController.selected.rdfSubject}" title="#{bundle.ViewAdministratorTitle_rdfSubject}"/>
+                        </li>
+                    </ol>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

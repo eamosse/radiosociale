@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMessageTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.CreateMessageTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{messageController.create}" value="#{bundle.CreateMessageSaveLink}" />
+                        <p:commandButton action="#{messageController.prepareList}" value="#{bundle.CreateMessageShowAllLink}" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+                <p:separator/>
+                <h:panelGrid columns="2">
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_content}" for="content" />
+                        <p:inputText id="content" value="#{messageController.selected.content}"  >
+                            <p:watermark for="content" value="#{bundle.CreateMessageTitle_content}" />
+                        </p:inputText>
+                        <p:message for="content" id="messagecontent" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_frequency}" for="frequency" />
+                        <p:selectOneMenu id="frequency" value="#{messageController.selected.frequency}"  >
+                            <f:selectItems value="#{frequencyController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <p:message for="frequency" id="messagefrequency" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_position}" for="position" />
+                        <p:inputText id="position" value="#{messageController.selected.position}"  >
+                            <p:watermark for="position" value="#{bundle.CreateMessageTitle_position}" />
+                        </p:inputText>
+                        <p:message for="position" id="messageposition" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_person}" for="person" />
+                        <p:selectOneMenu id="person" value="#{messageController.selected.person}"  >
+                            <f:selectItems value="#{personController.itemsAvailableSelectOne}"/>
+                        </p:selectOneMenu>
+                        <p:message for="person" id="messageperson" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_metadatas}" for="metadatas" />
+                        <p:inputText id="metadatas" value="#{messageController.selected.metadatas}"  >
+                            <p:watermark for="metadatas" value="#{bundle.CreateMessageTitle_metadatas}" />
+                        </p:inputText>
+                        <p:message for="metadatas" id="messagemetadatas" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_publishDate}" for="publishDate" />
+                        <p:inputText id="publishDate" value="#{messageController.selected.publishDate}"  >
+                            <p:watermark for="publishDate" value="#{bundle.CreateMessageTitle_publishDate}" />
+                        </p:inputText>
+                        <p:message for="publishDate" id="messagepublishDate" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateMessageLabel_rdfSubject}" for="rdfSubject" />
+                        <p:inputText id="rdfSubject" value="#{messageController.selected.rdfSubject}"  >
+                            <p:watermark for="rdfSubject" value="#{bundle.CreateMessageTitle_rdfSubject}" />
+                        </p:inputText>
+                        <p:message for="rdfSubject" id="messagerdfSubject" display="icon"/>  
+                    </h:panelGroup>
+                </h:panelGrid>
+                <p:separator/>
+                <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;">  
+                    <p:commandButton action="#{messageController.create}" value="#{bundle.CreateMessageSaveLink}" icon="ui-icon-disk" />
+                    <p:commandButton value="Annuler" onclick="confirmation.show()" type="button" icon="ui-icon-cancel" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="confirmDialog" message="Etes vous sur de vouloir abandonner?"  
+                                 header="Annuler les modifications" severity="alert" widgetVar="confirmation">  
+                    <p:commandButton id="confirm" value="Oui" action="#{messageController.prepareList}" />  
+                    <p:commandButton id="decline" value="Non" onclick="confirmation.hide()" type="button" />   
+                </p:confirmDialog>  
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

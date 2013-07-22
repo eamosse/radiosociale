@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="style">
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.fileupload-ui.css"/>
+        </ui:define>
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFrequencyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom" id="form">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.CreateFrequencyTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{frequencyController.create}" value="#{bundle.CreateFrequencySaveLink}" />
+                        <p:commandButton action="#{frequencyController.prepareList}" value="#{bundle.CreateFrequencyShowAllLink}" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+
+                <div class="div_details">
+                    <h5>Description of the frequency</h5>   
+                    <div class="fieldcontain row">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_category}" for="category" />
+                        <div class="large-6 columns">
+
+                            <p:selectOneMenu id="category" value="#{frequencyController.selected.category}" style="width: 30%">  
+                                <f:selectItem itemLabel="Select One" itemValue="" />  
+                                <f:selectItems value="#{categoryController.categories}" var="cc" itemValue="#{cc}" itemLabel="#{cc.name}" />  
+
+                            </p:selectOneMenu>  
+                             <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('category')}"  /> 
+                        </div>
+                        </div>
+                    </div>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{frequencyController.selected.name}"  >
+                            <p:watermark for="name" value="#{bundle.CreateFrequencyTitle_name}" />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('name')}"  /> 
+                        </div>
+                        <p:message for="name" id="messagename" display="icon"/>  
+                    </div>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{frequencyController.selected.description}"  >
+                            <p:watermark for="description" value="#{bundle.CreateFrequencyTitle_description}" />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('description')}"  /> 
+                        </div>
+                        <p:message for="description" id="messagedescription" display="icon"/>  
+                    </div>
+                </div>
+
+                <div class="div_details">
+                    <h5>Topic Settings</h5>  
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_topic}" for="topic" />
+                        <p:inputText id="topic" value="#{frequencyController.selected.topic}"  >
+                            <p:watermark for="topic" value="#{bundle.CreateFrequencyTitle_topic}" />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('topic')}"  /> 
+                        </div>
+                        <p:message for="topic" id="messagetopic" display="icon"/>  
+                    </div>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_publish}" for="responseType" />
+                        <p:selectOneRadio id="responseType" value="#{frequencyController.selected.responseType}">  
+                            <f:selectItems value="#{frequencyController.responseType}"/>  
+                        </p:selectOneRadio>  
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('responseType')}"  /> 
+                        </div>
+                        <p:message for="responseType" id="messageResponseType" display="icon"/>  
+                    </div>
+                </div>
+
+                <div class="div_details">
+                    <h5>Security Settings</h5>  
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_publish}" for="publish" />
+                        <p:selectOneRadio id="publish" value="#{frequencyController.selected.publish}">  
+                            <f:selectItems value="#{frequencyController.accessValues}"/>  
+                        </p:selectOneRadio>  
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('publish')}"  /> 
+                        </div>
+                        <p:message for="publish" id="messagepublish" display="icon"/>  
+                    </div>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_listen}" for="listen" />
+                        <p:selectOneRadio id="listen" value="#{frequencyController.selected.listen}">  
+                            <f:selectItems value="#{frequencyController.accessValues}"/>  
+                        </p:selectOneRadio>  
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('listen')}"  /> 
+                        </div>
+                        <p:message for="listen" id="messagelisten" display="icon"/>  
+                    </div>
+
+                </div>
+
+                <div class="div_details">
+                    <h5>Frequency icon</h5> 
+                    <div class="large-4 columns" style="margin-right: 20px">
+                        <img id="img" class="circular"  src="#{request.contextPath}#{frequencyController.selected.image}" alt="default image"/>
+                        <h:inputHidden id="image" value="#{frequencyController.selected.image}"/>
+                    </div>
+                    <div class="large-4 columns">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="icon-plus icon-white"></i>
+                            <span>Upload an icon</span>
+                            <input id="fileupload" type="file" name="files[]" data-url="#{request.contextPath}/upload"/>
+                        </span> 
+
+                    </div>
+                    <div class="large-4 columns" id="progress">
+                        <div style="width: 0%;"></div>
+                    </div>
+                    <br style="clear: both"/>
+                </div>
+
+                <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;">  
+                    <p:commandButton action="#{frequencyController.create}" value="#{bundle.CreateFrequencySaveLink}" icon="ui-icon-disk" />
+                    <p:commandButton value="Annuler" onclick="confirmation.show()" type="button" icon="ui-icon-cancel" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="confirmDialog" message="Etes vous sur de vouloir abandonner?"  
+                                 header="Annuler les modifications" severity="alert" widgetVar="confirmation">  
+                    <p:commandButton id="confirm" value="Oui" action="#{frequencyController.prepareList}" />  
+                    <p:commandButton id="decline" value="Non" onclick="confirmation.hide()" type="button" />   
+                </p:confirmDialog>  
+            </h:form>
+            
+            <script src="#{request.contextPath}/js/vendor/jquery.ui.widget.js"></script>
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="#{request.contextPath}/js/jquery.iframe-transport.js"></script>
+            <script src="#{request.contextPath}/js/jquery.fileupload.js"></script>
+            <script>
+                        $(function() {
+                            $('#fileupload').fileupload({
+                                dataType: 'json',
+                                done: function(e, data) {
+                                    $.each(data.result, function(index, file) {
+                                        $("#img").attr("src", "/RadioServer" + file.path);
+                                        alert(file.path)
+                                        $(PrimeFaces.escapeClientId('form:image')).val(file.path);
+                                    });
+                                },
+                                progressall: function(e, data) {
+                                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                                    $('#progress .bar').css(
+                                            'width',
+                                            progress + '%'
+                                            );
+                                },
+                                dropZone: $('#dropzone')
+                            });
+                        });
+            </script>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

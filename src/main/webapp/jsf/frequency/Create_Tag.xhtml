@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="style">
+            <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.fileupload-ui.css"/>
+        </ui:define>
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateFrequencyTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+              <p:tabMenu activeIndex="2">  
+                    <p:menuitem value="Details" url="View.xhtml" icon="ui-icon-star"/>  
+                    <p:menuitem value="Settings" url="Edit.xhtml" icon="ui-icon-pencil" />  
+                    <p:menuitem value="Tags" url="Create_Tag.xhtml" icon="ui-icon-pencil" />  
+                </p:tabMenu> 
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom" id="form">
+               <div class="div_details">
+                    <h5>Frequency Tags</h5>   
+                    <hr/>
+                    <p:dataList style="background-color: inherit; border: none" id="tags" value="#{frequencyController.selected.tags.toArray()}" rendered="#{frequencyController.selected.tags.size() > 0}" var="tag" type="definition">  
+                    <div class="row" style="margin-top: 8px">
+                       <div class="small-1 columns">
+                            <img id="img" class="circular" style="width: 20px; height: 20px" src="#{request.contextPath}#{tag.image}" alt="default image"/>
+                        </div>
+                        <div class="small-11 columns">
+                                <h:outputText  value="#{tag.text}" title="#{bundle.ViewCategoryTitle_name}"/>
+                        </div>
+                    </div>
+                </p:dataList>  
+                    <p:outputLabel rendered="#{frequencyController.selected.tags.size()==0}"/>
+                </div>
+                
+                <div class="div_details">
+                    <h5>Topic Settings</h5>  
+                    <hr/>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="Tag" for="text" />
+                        <p:inputText id="text" value="#{frequencyController.currentResponse.text}"  >
+                            <p:watermark for="text" value="Tag" />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel  value="#{categoryController.getDescription('text')}"  /> 
+                        </div>
+                        <p:message for="text" id="messagetext" display="icon"/>  
+                    </div>
+                    <div class="fieldcontain row">
+                        <h:outputLabel value="#{bundle.CreateFrequencyLabel_description}"/>
+                        <div class="large-4 columns" style="margin-right: 20px">
+                            <img id="img" class="circular"  src="#{request.contextPath}#{frequencyController.currentResponse.image}" alt="default image"/>
+                            <h:inputHidden id="image" value="#{frequencyController.currentResponse.image}"/>
+                        </div>
+                        <div class="large-4 columns">
+                            <span class="btn btn-success fileinput-button">
+                                <i class="icon-plus icon-white"></i>
+                                <span>Upload an icon</span>
+                                <input id="fileupload" type="file" name="files[]" data-url="#{request.contextPath}/upload"/>
+                            </span> 
+                        </div>
+                        <div class="large-4 columns" id="progress">
+                            <div style="width: 0%;"></div>
+                        </div>
+                        <br style="clear: both"/>
+                    </div>
+                    <p:commandButton action="#{frequencyController.createTag}" update="form"  value="#{bundle.CreateFrequencySaveLink}" icon="ui-icon-disk" />
+                </div>
+            </h:form>
+
+            <script src="#{request.contextPath}/js/vendor/jquery.ui.widget.js"></script>
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="#{request.contextPath}/js/jquery.iframe-transport.js"></script>
+            <script src="#{request.contextPath}/js/jquery.fileupload.js"></script>
+            <script>
+                        $(function() {
+                            $('#fileupload').fileupload({
+                                dataType: 'json',
+                                done: function(e, data) {
+                                    $.each(data.result, function(index, file) {
+                                        $("#img").attr("src", "/RadioServer" + file.path);
+                                        $(PrimeFaces.escapeClientId('form:image')).val(file.path);
+                                    });
+                                },
+                                progressall: function(e, data) {
+                                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                                    $('#progress .bar').css(
+                                            'width',
+                                            progress + '%'
+                                            );
+                                },
+                                dropZone: $('#dropzone')
+                            });
+                        });
+            </script>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

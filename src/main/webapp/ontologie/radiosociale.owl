@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY time "http://www.w3.org/2006/time" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY foaf "http://xmlns.com/foaf/spec/index.rdf" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rds "http://xmlns.com/radiociale/ontology/0.1#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY geo "http://www.geonames.org/ontology/ontology_v3.1.rdf" >
+]>
+
+
+<rdf:RDF xmlns="http://xmlns.com/radiociale/ontology/0.1#"
+     xml:base="http://xmlns.com/radiociale/ontology/0.1"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:time="http://www.w3.org/2006/time"
+     xmlns:rds="http://xmlns.com/radiociale/ontology/0.1#"
+     xmlns:geo="http://www.geonames.org/ontology/ontology_v3.1.rdf"
+     xmlns:foaf="http://xmlns.com/foaf/spec/index.rdf"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://xmlns.com/radiociale/ontology/0.1#">
+        <owl:imports rdf:resource="http://www.geonames.org/ontology"/>
+        <owl:imports rdf:resource="http://www.w3.org/2006/time"/>
+        <owl:imports rdf:resource="http://xmlns.com/foaf/0.1/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#administrator -->
+
+    <owl:ObjectProperty rdf:about="&rds;administrator">
+        <rdfs:range rdf:resource="http://www.w3.org/2000/10/swap/pim/contact#Person"/>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#category -->
+
+    <owl:ObjectProperty rdf:about="&rds;category">
+        <rdfs:label xml:lang="en">Category</rdfs:label>
+        <rdfs:comment xml:lang="en">Category of the frequency</rdfs:comment>
+        <rdfs:range rdf:resource="&rds;Category"/>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#defineTag -->
+
+    <owl:ObjectProperty rdf:about="&rds;defineTag">
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+        <rdfs:subPropertyOf rdf:resource="&rds;tag"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#duration -->
+
+    <owl:ObjectProperty rdf:about="&rds;duration">
+        <rdfs:range rdf:resource="&time;#DurationDescription"/>
+        <rdfs:domain rdf:resource="&rds;Feed"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#feature -->
+
+    <owl:ObjectProperty rdf:about="&rds;feature">
+        <rdfs:range rdf:resource="http://www.geonames.org/ontology#Feature"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#frequency -->
+
+    <owl:ObjectProperty rdf:about="&rds;frequency">
+        <rdfs:range rdf:resource="&rds;Frequency"/>
+        <rdfs:domain rdf:resource="&rds;News"/>
+        <rdfs:subPropertyOf rdf:resource="&rds;administrator"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#hasTag -->
+
+    <owl:ObjectProperty rdf:about="&rds;hasTag">
+        <rdfs:domain rdf:resource="&rds;Event"/>
+        <rdfs:subPropertyOf rdf:resource="&rds;tag"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#listen -->
+
+    <owl:ObjectProperty rdf:about="&rds;listen">
+        <rdfs:label xml:lang="en">Listen Right</rdfs:label>
+        <rdfs:comment xml:lang="en">Define who can listen to a frequency</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+        <rdfs:range rdf:resource="&rds;AccesRight"/>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#publish -->
+
+    <owl:ObjectProperty rdf:about="&rds;publish">
+        <rdfs:label xml:lang="en">Publication Right</rdfs:label>
+        <rdfs:label xml:lang="fr">Droit de publication</rdfs:label>
+        <rdfs:comment xml:lang="en">Publication Right on a frequency</rdfs:comment>
+        <rdfs:range rdf:resource="&rds;AccesRight"/>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#publishBy -->
+
+    <owl:ObjectProperty rdf:about="&rds;publishBy">
+        <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+        <rdfs:domain rdf:resource="&rds;Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#publishOn -->
+
+    <owl:ObjectProperty rdf:about="&rds;publishOn">
+        <rdfs:range rdf:resource="&time;#Instant"/>
+        <rdfs:domain rdf:resource="&rds;News"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#responseType -->
+
+    <owl:ObjectProperty rdf:about="&rds;responseType">
+        <rdfs:label xml:lang="en">Response Type</rdfs:label>
+        <rdfs:label xml:lang="fr">Type de réponse</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a response tpe for the frequency (Simple, multiple...)</rdfs:comment>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+        <rdfs:range rdf:resource="&rds;ResponseType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#tag -->
+
+    <owl:ObjectProperty rdf:about="&rds;tag">
+        <rdfs:range rdf:resource="&rds;Tag"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#description -->
+
+    <owl:DatatypeProperty rdf:about="&rds;description">
+        <rdfs:label xml:lang="en">Description</rdfs:label>
+        <rdfs:comment xml:lang="en">Description of the instance</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#id -->
+
+    <owl:DatatypeProperty rdf:about="&rds;id">
+        <rdfs:label xml:lang="en">Identifier</rdfs:label>
+        <rdfs:label xml:lang="fr">Identifiant</rdfs:label>
+        <rdfs:comment xml:lang="en">Unique identifier of the instance in the graph</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#image -->
+
+    <owl:DatatypeProperty rdf:about="&rds;image">
+        <rdfs:label xml:lang="en">Image</rdfs:label>
+        <rdfs:label xml:lang="fr">Image</rdfs:label>
+        <rdfs:comment xml:lang="en">Link to a icon representing the instance</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#name -->
+
+    <owl:DatatypeProperty rdf:about="&rds;name">
+        <rdfs:label xml:lang="en">Name</rdfs:label>
+        <rdfs:label xml:lang="fr">Nom</rdfs:label>
+        <rdfs:comment xml:lang="en">Designation of the instance being created</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#topic -->
+
+    <owl:DatatypeProperty rdf:about="&rds;topic">
+        <rdfs:label xml:lang="en">Topic</rdfs:label>
+        <rdfs:label xml:lang="fr">Topic</rdfs:label>
+        <rdfs:comment xml:lang="en">Define the subject covered by the affected frequency</rdfs:comment>
+        <rdfs:domain rdf:resource="&rds;Frequency"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#trustLevel -->
+
+    <owl:DatatypeProperty rdf:about="&rds;trustLevel">
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:domain rdf:resource="&rds;News"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#AccesRight -->
+
+    <owl:Class rdf:about="&rds;AccesRight"/>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Category -->
+
+    <owl:Class rdf:about="&rds;Category">
+        <rdfs:label xml:lang="en">Category</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a category of  frequencies</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Event -->
+
+    <owl:Class rdf:about="&rds;Event">
+        <rdfs:label xml:lang="en">Event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&rds;News"/>
+        <rdfs:comment xml:lang="en">Define a spatio temporal event</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Feed -->
+
+    <owl:Class rdf:about="&rds;Feed">
+        <rdfs:subClassOf rdf:resource="&rds;News"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Frequency -->
+
+    <owl:Class rdf:about="&rds;Frequency">
+        <rdfs:label xml:lang="en">Frequency</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a frequency instance</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#MetaKey -->
+
+    <owl:Class rdf:about="&rds;MetaKey"/>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#News -->
+
+    <owl:Class rdf:about="&rds;News">
+        <rdfs:subClassOf rdf:resource="http://www.geonames.org/ontology#Feature"/>
+        <rdfs:subClassOf rdf:resource="&time;#TemporalEntity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#ResponseType -->
+
+    <owl:Class rdf:about="&rds;ResponseType"/>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Tag -->
+
+    <owl:Class rdf:about="&rds;Tag"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

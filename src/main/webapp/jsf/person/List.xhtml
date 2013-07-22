@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.ListPersonTitle}"/>
+                    </p:toolbarGroup>  
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{personController.prepareCreate}" icon="ui-icon-plus"/>
+                    </p:toolbarGroup>  
+                </p:toolbar> 
+                <h:outputText escape="false" value="#{bundle.ListPersonEmpty}" rendered="#{personController.items.rowCount == 0}"/>
+                <p:dataTable value="#{personController.items}" var="item"
+                             paginator="true" rows="10"  
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                             rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"  paginatorAlwaysVisible="false" rendered="#{personController.items.rowCount >0}" >
+                    <p:column headerText="#{bundle.ListPersonTitle_id}">
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_firstName}">
+                        <h:outputText value="#{item.firstName}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_lastName}">
+                        <h:outputText value="#{item.lastName}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_gender}">
+                        <h:outputText value="#{item.gender}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_email}">
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_nick}">
+                        <h:outputText value="#{item.nick}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_img}">
+                        <h:outputText value="#{item.img}"/>
+                    </p:column>
+                    <p:column headerText="#{bundle.ListPersonTitle_rdfSubject}">
+                        <h:outputText value="#{item.rdfSubject}"/>
+                    </p:column>
+                    <p:column headerText="&nbsp;">
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <p:commandButton action="#{personController.prepareView}" icon="ui-icon-search"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{personController.prepareEdit}"  icon="ui-icon-pencil"/>
+                        <h:outputText value=" "/>
+                        <p:commandButton action="#{personController.destroy}" icon="ui-icon-trash"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

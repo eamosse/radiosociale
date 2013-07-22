@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAdministratorTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <h:form class="custom">
+                <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.CreateAdministratorTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{administratorController.create}" value="#{bundle.CreateAdministratorSaveLink}" />
+                        <p:commandButton action="#{administratorController.prepareList}" value="#{bundle.CreateAdministratorShowAllLink}" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+                <p:separator/>
+                <h:panelGrid columns="2">
+                    <p:inputText id="id" value="#{administratorController.selected.id}"   readonly="true"/>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_contact}" for="contact" />
+                        <p:inputText id="contact" value="#{administratorController.selected.contact}"  >
+                            <p:watermark for="contact" value="#{bundle.CreateAdministratorTitle_contact}" />                   
+                        </p:inputText>
+                        <p:message for="contact" id="messagecontact" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_rdfSubject}" for="rdfSubject" />
+                        <p:inputText id="rdfSubject" value="#{administratorController.selected.rdfSubject}"  >
+                            <p:watermark for="rdfSubject" value="#{bundle.CreateAdministratorTitle_rdfSubject}" />                   
+                        </p:inputText>
+                        <p:message for="rdfSubject" id="messagerdfSubject" display="icon"/>  
+                    </h:panelGroup>
+                    <p:inputText id="id" value="#{administratorController.selected.id}"   readonly="true"/>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{administratorController.selected.firstName}"  >
+                            <p:watermark for="firstName" value="#{bundle.CreateAdministratorTitle_firstName}" />                   
+                        </p:inputText>
+                        <p:message for="firstName" id="messagefirstName" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{administratorController.selected.lastName}"  >
+                            <p:watermark for="lastName" value="#{bundle.CreateAdministratorTitle_lastName}" />                   
+                        </p:inputText>
+                        <p:message for="lastName" id="messagelastName" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_gender}" for="gender" />
+                        <p:inputText id="gender" value="#{administratorController.selected.gender}"  >
+                            <p:watermark for="gender" value="#{bundle.CreateAdministratorTitle_gender}" />                   
+                        </p:inputText>
+                        <p:message for="gender" id="messagegender" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{administratorController.selected.email}"  >
+                            <p:watermark for="email" value="#{bundle.CreateAdministratorTitle_email}" />                   
+                        </p:inputText>
+                        <p:message for="email" id="messageemail" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_nick}" for="nick" />
+                        <p:inputText id="nick" value="#{administratorController.selected.nick}"  >
+                            <p:watermark for="nick" value="#{bundle.CreateAdministratorTitle_nick}" />                   
+                        </p:inputText>
+                        <p:message for="nick" id="messagenick" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_img}" for="img" />
+                        <p:inputText id="img" value="#{administratorController.selected.img}"  >
+                            <p:watermark for="img" value="#{bundle.CreateAdministratorTitle_img}" />                   
+                        </p:inputText>
+                        <p:message for="img" id="messageimg" display="icon"/>  
+                    </h:panelGroup>
+                    <h:panelGroup class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateAdministratorLabel_rdfSubject}" for="rdfSubject" />
+                        <p:inputText id="rdfSubject" value="#{administratorController.selected.rdfSubject}"  >
+                            <p:watermark for="rdfSubject" value="#{bundle.CreateAdministratorTitle_rdfSubject}" />                   
+                        </p:inputText>
+                        <p:message for="rdfSubject" id="messagerdfSubject" display="icon"/>  
+                    </h:panelGroup>
+                </h:panelGrid>
+                <p:separator/>
+                <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;">  
+                    <p:commandButton action="#{administratorController.update}" value="#{bundle.CreateAdministratorSaveLink}" icon="ui-icon-disk" />
+                    <p:commandButton value="Annuler" onclick="confirmation.show()" type="button" icon="ui-icon-cancel" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="confirmDialog" message="Etes vous sur de vouloir abandonner?"  
+                                 header="Annuler les modifications" severity="alert" widgetVar="confirmation">  
+                    <p:commandButton id="confirm" value="Oui" action="#{administratorController.prepareList}" />  
+                    <p:commandButton id="decline" value="Non" onclick="confirmation.hide()" type="button" />   
+                </p:confirmDialog>  
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

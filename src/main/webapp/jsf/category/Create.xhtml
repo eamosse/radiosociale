@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+   
+    <ui:composition template="/template.xhtml">
+         <ui:define name="style">
+            <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/jquery.fileupload-ui.css"/>
+        </ui:define>
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <p:toolbar>  
+                    <p:toolbarGroup align="left">  
+                        <h:outputText value="#{bundle.CreateCategoryTitle}"/>
+                    </p:toolbarGroup>  
+
+                    <p:toolbarGroup align="right">  
+                        <p:commandButton action="#{categoryController.create}" value="#{bundle.CreateCategorySaveLink}" />
+                        <p:commandButton action="#{categoryController.prepareList}" value="#{bundle.CreateCategoryShowAllLink}" immediate="true"/>
+                    </p:toolbarGroup>  
+
+                </p:toolbar>
+            <h:form class="custom" id="form">
+                <div class="div_details">
+                    <h3>Category Details</h3>   
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateCategoryLabel_name}" for="name" />
+                        
+                        <p:inputText id="name" value="#{categoryController.selected.name}" required="true"  >
+                            <p:watermark for="name" value="#{bundle.CreateCategoryTitle_name}" />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel value="#{categoryController.getDescription('name')}" />
+                        </div>
+                        <p:message for="name" id="messagename" display="icon"/>  
+                    </div>
+                    <div class="fieldcontain">
+                        <h:outputLabel value="#{bundle.CreateCategoryLabel_description}" for="description" />
+                        <p:inputText  id="description" value="#{categoryController.selected.description}" required="true" >
+                            <p:watermark for="description" value="#{bundle.CreateCategoryTitle_description}"  />
+                        </p:inputText>
+                        <div class="description">
+                            <h:outputLabel class="comment_edit" value="#{categoryController.getDescription('description')}"  />
+                        </div>
+                        <p:message for="description" id="messagedescription" display="icon"/>  
+                    </div>
+
+                </div>
+
+                <div class="div_details">
+                    <h3>Category icon</h3> 
+                    <div class="description">
+                       <h:outputLabel  value="#{categoryController.getDescription('image')}"  /> 
+                    </div>
+                    <div class="large-4 columns" style="margin-right: 20px">
+                        <img id="img" class="circular"  src="#{request.contextPath}/pictures/image_bus.png" alt="default image"/>
+                        <h:inputHidden id="image" value="#{categoryController.selected.image}"/>
+                    </div>
+                    <div class="large-4 columns">
+                        <span class="btn btn-success fileinput-button">
+                            <i class="icon-plus icon-white"></i>
+                            <span>Charger l'image</span>
+                            <input id="fileupload" type="file" name="files[]" data-url="#{request.contextPath}/upload" multiple="multiple"/>
+                        </span> 
+                    </div>
+                    <div class="large-4 columns" id="progress">
+                        <div style="width: 0%;"></div>
+                    </div>
+                    <br style="clear: both"/>
+                </div>
+
+                <h:panelGrid id="display" columns="3" cellpadding="4" style="margin:0 auto;">  
+                    <p:commandButton action="#{categoryController.create}" value="#{bundle.CreateCategorySaveLink}" icon="ui-icon-disk" />
+                    <p:commandButton value="Annuler" onclick="confirmation.show()" type="button" icon="ui-icon-cancel" />
+                </h:panelGrid>
+
+                <p:confirmDialog id="confirmDialog" message="Etes vous sur de vouloir abandonner?"  
+                                 header="Annuler les modifications" severity="alert" widgetVar="confirmation">  
+                    <p:commandButton id="confirm" value="Oui" action="#{categoryController.prepareList}" />  
+                    <p:commandButton id="decline" value="Non" onclick="confirmation.hide()" type="button" />   
+                </p:confirmDialog>  
+
+            </h:form>
+            <script src="#{request.contextPath}/js/jquery-1.8.2.min.js"></script>
+            <script src="#{request.contextPath}/js/vendor/jquery.ui.widget.js"></script>
+            <script src="#{request.contextPath}/js/bootstrap.min.js"></script>
+            <script src="#{request.contextPath}/js/jquery.iframe-transport.js"></script>
+            <script src="#{request.contextPath}/js/jquery.fileupload.js"></script>
+            <script src="#{request.contextPath}/js/main.js"></script>
+        </ui:define>
+    </ui:composition>
+
+
+</html>

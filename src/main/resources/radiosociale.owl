@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://xmlns.com/radiociale/ontology/0.1#"
+     xml:base="http://xmlns.com/radiociale/ontology/0.1"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://xmlns.com/radiociale/ontology/0.1#"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#category -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#category">
+        <rdfs:label xml:lang="en">Category</rdfs:label>
+        <rdfs:comment xml:lang="en">Category of the frequency</rdfs:comment>
+        <rdfs:domain rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Frequency"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://xmlns.com/radiociale/ontology/0.1#category"/>
+                <owl:onClass rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Category"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#description -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#description">
+        <rdfs:label xml:lang="en">Description</rdfs:label>
+        <rdfs:label xml:lang="fr">DÃ©scription</rdfs:label>
+        <rdfs:comment xml:lang="en">Description about the instance being created</rdfs:comment>
+        <rdfs:comment xml:lang="fr">DÃ©scription de l&apos;instance qu&apos;on est entrain de crÃ©er</rdfs:comment>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#id -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#id">
+        <rdfs:label xml:lang="en">Identifier</rdfs:label>
+        <rdfs:label xml:lang="fr">Identifiant</rdfs:label>
+        <rdfs:comment xml:lang="en">Unique identifier of the instance in the graph</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Identifiant unique de l&apos;instance dans le graphe</rdfs:comment>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;long"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#image -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#image">
+        <rdfs:label xml:lang="en">Image</rdfs:label>
+        <rdfs:label xml:lang="fr">Image</rdfs:label>
+        <rdfs:comment xml:lang="en">Link to a icon representing the instance</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Lien vers une icone reprÃ©sentant cette instance</rdfs:comment>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#listen -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#listen">
+        <rdfs:label xml:lang="en">Listen Right</rdfs:label>
+        <rdfs:label xml:lang="fr">Accès à l&apos;ecoute</rdfs:label>
+        <rdfs:comment xml:lang="en">Define who can listen to a frequency</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Droit d&apos;écoute sur la fréquence</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Frequency"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#name -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#name">
+        <rdfs:label xml:lang="en">Name</rdfs:label>
+        <rdfs:label xml:lang="fr">Nom</rdfs:label>
+        <rdfs:comment xml:lang="en">Designation of the instance being created</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Designation de quelque chose</rdfs:comment>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#publish -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#publish">
+        <rdfs:label xml:lang="en">Publication Right</rdfs:label>
+        <rdfs:label xml:lang="fr">Droit de publication</rdfs:label>
+        <rdfs:comment xml:lang="en">Publication Right on a frequency</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Droit d&apos;accès à la publication sur une fréquence</rdfs:comment>
+        <rdfs:domain rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#responseType -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#responseType">
+        <rdfs:label xml:lang="en">Response Type</rdfs:label>
+        <rdfs:label xml:lang="fr">Type de réponse</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a response tpe for the frequency (Simple, multiple...)</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Définit un type de réponse pour la fréquence (Simple, Multiple....)</rdfs:comment>
+        <rdfs:domain rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Frequency"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#topic -->
+
+    <owl:ObjectProperty rdf:about="http://xmlns.com/radiociale/ontology/0.1#topic">
+        <rdfs:label xml:lang="en">Topic</rdfs:label>
+        <rdfs:label xml:lang="fr">Topic</rdfs:label>
+        <rdfs:comment xml:lang="en">Define the subject covered by the affected frequency</rdfs:comment>
+        <rdfs:comment xml:lang="fr">Définit un sujet pour la fréquence</rdfs:comment>
+        <rdfs:domain rdf:resource="http://xmlns.com/radiociale/ontology/0.1#Frequency"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&owl;topDataProperty"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Category -->
+
+    <owl:Class rdf:about="http://xmlns.com/radiociale/ontology/0.1#Category">
+        <rdfs:label xml:lang="en">Category</rdfs:label>
+        <rdfs:label xml:lang="fr">CatÃ©gorie</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a category of  frequencies</rdfs:comment>
+        <rdfs:comment xml:lang="fr">DÃ©finit une catÃ©gorie de frÃ©quences </rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://xmlns.com/radiociale/ontology/0.1#Frequency -->
+
+    <owl:Class rdf:about="http://xmlns.com/radiociale/ontology/0.1#Frequency">
+        <rdfs:label xml:lang="en">Frequency</rdfs:label>
+        <rdfs:label xml:lang="fr">Fréquency</rdfs:label>
+        <rdfs:comment xml:lang="en">Define a frequency instance</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
