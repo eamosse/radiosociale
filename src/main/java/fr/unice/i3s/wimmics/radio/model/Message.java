@@ -26,7 +26,7 @@ import thewebsemantic.RdfType;
             + " WHERE{\n"
             + "{?x rdf:type rds:Message.\n"
             + " ?x rds:content ?content.\n"
-            + " ?x gn:feature ?feature.\n"
+            + " ?x rds:feature ?feature.\n"
             + " ?x rds:listen ?listen.\n"
             + " ?x rds:id ?id.\n"
             + "}"

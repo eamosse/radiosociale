@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon"/>
+            <ui:insert name="style"></ui:insert>
+
+            <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+            <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-retina.png"/>
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/main.css" type="text/css"/>
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/foundation.min.css" type="text/css"/>
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/foundation.css" type="text/css"/>
+            <link rel="stylesheet" href="#{request.contextPath}/resources/css/style.css" type="text/css"/>
+
+            <title><ui:insert name="title">Radio Sociale</ui:insert></title>
+            <h:outputStylesheet name="css/jsfcrud.css"/>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="50" style="padding: 0; margin: 0"  resizable="false" closable="false" collapsible="false">
+                    <nav class="top-bar">
+                        <ul>
+                            <!-- Title Area -->
+                            <li class="name">
+                                <h1>
+                                    <a class="home" href="#{request.contextPath}">Radio Sociale</a>
+                                </h1>
+                            </li>
+                            <li class="toggle-topbar"><a href="#">sddddddddddddddd</a></li>
+                        </ul>
+                        <section>
+                            <ul class="right">
+                                <li>
+                                    <h:outputLink id="loginLink" value="javascript:void(0)" onclick="dlg.show()" title="login">     
+                                        <p:graphicImage value="/images/login.png" />  
+                                    </h:outputLink> 
+                                </li>
+                                <li>
+                                    <a href="#{request.contextPath}/faces/security/user.xhtml">Administration</a>
+                                </li>
+                            </ul>
+
+                            <ul class="left">
+                                <li>
+                                    <a href="#{request.contextPath}/faces/frequency/create.xhtml">Frequences</a>
+                                </li>
+                                <li>
+                                    <a href="/">Messages</a>
+                                </li>
+                            </ul>
+
+                        </section>
+                    </nav>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                        <p:gmap  center="43.615614,7.0716598" zoom="13" type="HYBRID"   
+                                style="width: 100%; height: 100%;"  
+                                model="#{mapsController.simpleModel}" />  
+                        <br style="clear: both;" ></br>
+                      <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+                </p:layoutUnit>
+
+            </p:layout>
+          
+        </h:body>
+
+    </f:view>
+</html>

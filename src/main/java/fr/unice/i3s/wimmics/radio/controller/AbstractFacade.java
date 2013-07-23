@@ -211,7 +211,7 @@ public abstract class AbstractFacade<T> {
         Model m = vqe.execDescribe();
         //m.add(Utils.completModel(entityClass));
         m.setNsPrefixes(Utils.prefix);
-        m.write(System.out, "TURTLE");
+        m.write(System.out, "RDF/XML");
         RDF2Bean reader = new RDF2Bean(m);
         System.out.println("Entity " + entityClass);
         Collection<T> list = reader.load(entityClass);
